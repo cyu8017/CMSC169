@@ -9,6 +9,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // No additional code needed to run this application.
+        // When application runs, there should be no errors.
 
     }
 }
