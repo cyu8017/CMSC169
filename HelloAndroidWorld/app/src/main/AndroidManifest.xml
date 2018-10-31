@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cyu.helloandroidworld">
 
+
+    // Android Manifest File needed to run the app. 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
