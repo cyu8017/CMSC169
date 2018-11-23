@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="5dp"
+              tools:context=".MainActivity">
+
+    <EditText android:id="@+id/fnametxt"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="First Name"
+              android:inputType="textPersonName"
+              android:text="" />
+
+    <EditText android:id="@+id/lnametxt"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="Last Name"
+              android:inputType="textPersonName"
+              android:text="" />
+
+    <EditText android:id="@+id/emailtxt"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="Email"
+              android:inputType="textEmailAddress"
+              android:text="" />
+
+    <EditText android:id="@+id/phone_txt"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="Phone Number"
+              android:inputType="phone"
+              android:text="" />
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Phone Number"
+                  android:gravity="center"
+                  android:orientation="horizontal" >
+
+        <Button android:id="@+id/save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Contact"
+                android:textSize="16sp" />
+
+        <Button android:id="@+id/delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete Contact"
+                android:textSize="16dp" />
+
+    </LinearLayout>
+</LinearLayout>
