@@ -38,7 +38,7 @@ class DatabaseHandler : SQLiteOpenHelper {
                 FirstName + " TEXT, " + LastName + " TEXT, " + Email +
                 " TEXT," + Number + " TEXT );"
 
-        p0!!.execSQL(sql1);
+        p0!!.execSQL(sql1)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {

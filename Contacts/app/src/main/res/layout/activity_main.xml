@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".MainActivity">
+              tools:context=".MainActivity" android:padding="2dp">
 
     <Button
             android:id="@+id/add_contact_btn"
@@ -13,9 +12,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Add New Contact"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:text="@string/add_new_contact"
+            android:textSize="15sp"
+            android:textStyle="bold" android:background="@drawable/button_bg_rounded_corners"
+            android:fontFamily="sans-serif" android:textColor="@android:color/background_light"/>
 
     <ListView
             android:id="@+id/contact_list"
