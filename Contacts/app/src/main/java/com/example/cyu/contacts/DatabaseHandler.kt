@@ -67,7 +67,6 @@ class DatabaseHandler : SQLiteOpenHelper {
         val cur = sqb.query(sqlObj, cols, "fname like ?", rowSelArg, null, null, "fname")
 
         if (cur.moveToFirst()) {
-
             do {
                 val id = cur.getInt(cur.getColumnIndex("id"))
                 val fname = cur.getString(cur.getColumnIndex("fname"))
@@ -90,7 +89,9 @@ class DatabaseHandler : SQLiteOpenHelper {
 
         if (i > 0) {
             return "ok"
-        } else {
+        }
+
+        else {
             return "error"
         }
     }
@@ -101,7 +102,9 @@ class DatabaseHandler : SQLiteOpenHelper {
 
         if (i > 0) {
             return "ok"
-        } else {
+        }
+
+        else {
             return "error"
         }
     }

@@ -14,9 +14,9 @@ class ContactAdapter(con:Context, arrList:ArrayList<ContactData>): BaseAdapter()
     var myInflater: LayoutInflater? = null
 
     init {
-        this.context    = con
+        this.context = con
         this.myInflater = LayoutInflater.from(context)
-        this.arrayList  = arrList
+        this.arrayList = arrList
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
@@ -24,8 +24,9 @@ class ContactAdapter(con:Context, arrList:ArrayList<ContactData>): BaseAdapter()
         var myView = myInflater!!.inflate(R.layout.list_block,null)
         var ConObj = arrayList[p0]
 
-        var full_name : String = ConObj.FirstName.toString() +" "+ ConObj.LastName.toString()
+        var full_name : String = ConObj.FirstName.toString() + " " + ConObj.LastName.toString()
         myView.contact_name.text = full_name
+
         return myView
     }
 

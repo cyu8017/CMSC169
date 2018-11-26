@@ -36,17 +36,24 @@ class ContactManager : AppCompatActivity() {
 
         // Save Button
         save_btn.setOnClickListener() {
-            var a = fnametxt.text.toString()
-            var b = lnametxt.text.toString()
+
+            // Capitalize the first letter of first name and first letter of last name.
+            var a = fnametxt.text.toString().capitalize()
+            var b = lnametxt.text.toString().capitalize()
             var c = emailtxt.text.toString()
             var d = phone_txt.text.toString()
 
+            // If first name text field is empty display Toast Message
             if (a == " ") {
-                Toast.makeText(this, "Enter FirstName", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Enter first name", Toast.LENGTH_SHORT).show()
             }
 
-            else if (d == " ") {
-                Toast.makeText(this, "Enter Phone Number", Toast.LENGTH_SHORT).show()
+            else if (b == " ") {
+                Toast.makeText(this, "Enter last number", Toast.LENGTH_SHORT).show()
+            }
+
+            else if (c == " ") {
+                Toast.makeText(this, "Enter a email address", Toast.LENGTH_SHORT).show()
             }
 
             else {
@@ -58,18 +65,22 @@ class ContactManager : AppCompatActivity() {
 
                 // Adding contact
                 if (record_id == 0) {
-                    var DB: DatabaseHandler = DatabaseHandler(this);
-                    var response = DB.AddContact(values);
+                    var DB: DatabaseHandler = DatabaseHandler(this)
+                    var response = DB.AddContact(values)
 
                     if (response == "ok") {
                         Toast.makeText(this, "Contact Added", Toast.LENGTH_SHORT).show()
                         var intent = Intent(this, MainActivity:: class.java)
                         startActivity(intent)
                         finish()
-                    } else {
+                    }
+
+                    else {
                         Toast.makeText(this, "Not Added.. Try again", Toast.LENGTH_SHORT).show()
                     }
-                } else {
+                }
+
+                else {
                     var DB: DatabaseHandler = DatabaseHandler(this)
                     var res: String = DB.UpdateContact(values, record_id)
 
@@ -78,7 +89,9 @@ class ContactManager : AppCompatActivity() {
                         var intent = Intent(this, MainActivity:: class.java)
                         startActivity(intent)
                         finish()
-                    } else {
+                    }
+
+                    else {
                         Toast.makeText(this, "Error, Try Again", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -91,15 +104,19 @@ class ContactManager : AppCompatActivity() {
             var DB: DatabaseHandler = DatabaseHandler(this)
             var res: String = DB.RemoveContact(record_id)
 
+            // When the contact is successfully deleted, display this Toast Message
             if (res == "ok") {
                 Toast.makeText(this, "Contact Deleted", Toast.LENGTH_SHORT).show()
-            } else {
+            }
+
+            // If contact is not successfully deleted, display this Toast Message
+            else {
                 Toast.makeText(this, "Error.. Try Again", Toast.LENGTH_SHORT).show()
             }
 
             var intent = Intent(this, MainActivity:: class.java)
             startActivity(intent)
             finish()
-        }
+        } // End Delete Button
     }
 }

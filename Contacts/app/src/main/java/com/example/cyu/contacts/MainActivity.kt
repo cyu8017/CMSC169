@@ -1,7 +1,5 @@
 package com.example.cyu.contacts
 
-//http://androidpala.com/kotlin-sqlite-database/
-
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -21,12 +19,13 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        var DB:DatabaseHandler = DatabaseHandler(this);
+        var DB:DatabaseHandler = DatabaseHandler(this)
         ContactList = DB.FetchContacts("%")
 
         if(ContactList.size > 0) {
 
             var ContactAdapterObj = ContactAdapter(this, ContactList)
+            
             contact_list.adapter = ContactAdapterObj
 
             contact_list.onItemClickListener = AdapterView.OnItemClickListener {

@@ -8,14 +8,18 @@
 
     <Button
             android:id="@+id/add_contact_btn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:padding="5dp"
+            android:padding="15dp"
             android:text="@string/add_new_contact"
             android:textSize="15sp"
-            android:textStyle="bold" android:background="@drawable/button_bg_rounded_corners"
-            android:fontFamily="sans-serif" android:textColor="@android:color/background_light"/>
+            android:textStyle="bold"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:fontFamily="sans-serif"
+            android:textColor="@android:color/background_light"
+            android:layout_marginTop="5dp"/>
 
     <ListView
             android:id="@+id/contact_list"
