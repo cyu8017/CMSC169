@@ -11,53 +11,53 @@ class DatabaseHandler : SQLiteOpenHelper {
 
     companion object {
 
-        val Tag = "DatabaseHandler"
-        val DBName = "ContactDB"
-        val DBVersion = 1
+        const val tag = "DatabaseHandler"
+        const val dbName = "ContactDB"
+        const val dbVersion = 1
 
-        val tableName = "phoneTable"
-        val ConID = "id"
-        val FirstName = "fname"
-        val LastName = "lname"
-        val Number = "number"
-        val Email = "email"
+        const val tableName = "phoneTable"
+        const val conID = "id"
+        const val firstName = "fname"
+        const val lastName = "lname"
+        const val phoneNumber = "number"
+        const val email = "email"
     }
 
     var context: Context? = null
     var sqlObj: SQLiteDatabase
 
-    constructor(context: Context) : super(context, DBName, null, DBVersion) {
+    constructor(context: Context) : super(context, dbName, null, dbVersion) {
         this.context = context
         sqlObj = this.writableDatabase
     }
 
     override fun onCreate(p0: SQLiteDatabase?) {
         // SQL for creating table
-        var sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " +
-                "(" + ConID + " INTEGER PRIMARY KEY," +
-                FirstName + " TEXT, " + LastName + " TEXT, " + Email +
-                " TEXT," + Number + " TEXT );"
+        var sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " + "(" + conID + " INTEGER PRIMARY KEY," +
+                firstName + " TEXT, " + lastName + " TEXT, " + email + " TEXT," + phoneNumber + " TEXT );"
 
         p0!!.execSQL(sql1)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        p0!!.execSQL("DROP table IF EXISTS " + tableName)
+        //p0!!.execSQL("DROP table IF EXISTS" + tableName)
+        p0!!.execSQL("$tableName")
+
         onCreate(p0)
     }
 
-    fun AddContact(values: ContentValues): String {
-        var MSG: String = "error";
-        val ID = sqlObj!!.insert(tableName, "", values)
+    fun addContact(values: ContentValues): String {
+        var message = "error"
+        val id = sqlObj.insert(tableName, "", values)
 
-        if (ID > 0) {
-            MSG = "ok"
+        if (id > 0) {
+            message = "ok"
         }
 
-        return MSG
+        return message
     }
 
-    fun FetchContacts(keyword: String): ArrayList<ContactData> {
+    fun fetchContacts(keyword: String): ArrayList<ContactData> {
         var arrayList = ArrayList<ContactData>()
 
         val sqb = SQLiteQueryBuilder()
@@ -77,35 +77,22 @@ class DatabaseHandler : SQLiteOpenHelper {
             } while (cur.moveToNext())
         }
 
-        var count: Int = arrayList.size
+            //var count: Int = arrayList.size
 
         return arrayList
     }
 
-    fun UpdateContact(values: ContentValues, id: Int): String {
+    fun updateContact(values: ContentValues, id: Int): String {
 
         var selectionArs = arrayOf(id.toString())
-        val i = sqlObj!!.update(tableName, values, "id=?", selectionArs)
-
-        if (i > 0) {
-            return "ok"
-        }
-
-        else {
-            return "error"
-        }
+        val i = sqlObj.update(tableName, values, "id=?", selectionArs)
+        if (i > 0) return "ok" else return "error"
     }
 
-    fun RemoveContact(id: Int): String {
+    fun removeContact(id: Int): String {
         var selectionArs = arrayOf(id.toString())
-        val i = sqlObj!!.delete(tableName, "id=?", selectionArs)
+        val i = sqlObj.delete(tableName, "id=?", selectionArs)
+        if (i > 0) return "ok" else return "error"
 
-        if (i > 0) {
-            return "ok"
-        }
-
-        else {
-            return "error"
-        }
     }
 }

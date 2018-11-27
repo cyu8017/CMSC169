@@ -22,10 +22,10 @@ class ContactAdapter(con:Context, arrList:ArrayList<ContactData>): BaseAdapter()
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 
         var myView = myInflater!!.inflate(R.layout.list_block,null)
-        var ConObj = arrayList[p0]
+        var conObj = arrayList[p0]
 
-        var full_name : String = ConObj.FirstName.toString() + " " + ConObj.LastName.toString()
-        myView.contact_name.text = full_name
+        var fullName : String = conObj.firstName.toString() + " " + conObj.lastName.toString()
+        myView.contact_name.text = fullName
 
         return myView
     }

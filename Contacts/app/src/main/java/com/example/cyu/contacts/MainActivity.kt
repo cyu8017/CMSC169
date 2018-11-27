@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var ContactList = ArrayList<ContactData>()
+    var contactList = ArrayList<ContactData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,24 +19,24 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        var DB:DatabaseHandler = DatabaseHandler(this)
-        ContactList = DB.FetchContacts("%")
+        var database = DatabaseHandler(this)
+        contactList = database.fetchContacts("%")
 
-        if(ContactList.size > 0) {
+        if(contactList.size > 0) {
 
-            var ContactAdapterObj = ContactAdapter(this, ContactList)
+            var contactAdapterObj = ContactAdapter(this, contactList)
             
-            contact_list.adapter = ContactAdapterObj
+            contact_list.adapter = contactAdapterObj
 
             contact_list.onItemClickListener = AdapterView.OnItemClickListener {
-                    adapterView, view, position, id ->
+                    _ , _ , position, _ ->
 
                 // ContactList holds ContactData object
-                var fname = ContactList[position].FirstName
-                var lname = ContactList[position].LastName
-                var email = ContactList[position].Email
-                var phone = ContactList[position].PhoneNumber
-                var id = ContactList[position].conID
+                var fname = contactList[position].firstName
+                var lname = contactList[position].lastName
+                var email = contactList[position].email
+                var phone = contactList[position].phoneNumber
+                var id = contactList[position].conID
 
                 // Passing data to ContactManager activity.
                 var intent = Intent(this, ContactManager:: class.java)
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "No Contact Found", Toast.LENGTH_SHORT).show()
         }
 
-        add_contact_btn.setOnClickListener() {
+        add_contact_btn.setOnClickListener {
             var intent = Intent(this, ContactManager:: class.java)
             startActivity(intent)
         }
