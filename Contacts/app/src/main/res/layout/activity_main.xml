@@ -4,8 +4,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".MainActivity" android:padding="2dp" android:background="@android:color/background_light">
+              tools:context=".MainActivity"
+              android:padding="2dp"
+              android:background="@android:color/background_light">
 
+    <!-- Add a contact button-->
     <Button
             android:id="@+id/add_contact_btn"
             android:layout_width="wrap_content"
@@ -21,11 +24,13 @@
             android:textColor="@android:color/background_light"
             android:layout_marginTop="5dp"/>
 
+    <!-- Contacts list-->
     <ListView
             android:id="@+id/contact_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:dividerHeight="1px" android:layout_marginTop="9dp">
+            android:dividerHeight="1px"
+            android:layout_marginTop="9dp">
 
     </ListView>
 

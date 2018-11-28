@@ -9,6 +9,7 @@ import java.util.ArrayList
 
 class DatabaseHandler : SQLiteOpenHelper {
 
+    // Define constant objects
     companion object {
 
         const val tag = "DatabaseHandler"
@@ -24,7 +25,7 @@ class DatabaseHandler : SQLiteOpenHelper {
     }
 
     var context: Context? = null
-    var sqlObj: SQLiteDatabase
+    private var sqlObj: SQLiteDatabase
 
     constructor(context: Context) : super(context, dbName, null, dbVersion) {
         this.context = context
@@ -42,7 +43,6 @@ class DatabaseHandler : SQLiteOpenHelper {
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         //p0!!.execSQL("DROP table IF EXISTS" + tableName)
         p0!!.execSQL("$tableName")
-
         onCreate(p0)
     }
 
@@ -84,14 +84,14 @@ class DatabaseHandler : SQLiteOpenHelper {
 
     fun updateContact(values: ContentValues, id: Int): String {
 
-        var selectionArs = arrayOf(id.toString())
-        val i = sqlObj.update(tableName, values, "id=?", selectionArs)
+        var selectionArguments = arrayOf(id.toString())
+        val i = sqlObj.update(tableName, values, "id=?", selectionArguments)
         if (i > 0) return "ok" else return "error"
     }
 
     fun removeContact(id: Int): String {
-        var selectionArs = arrayOf(id.toString())
-        val i = sqlObj.delete(tableName, "id=?", selectionArs)
+        var selectionArguments = arrayOf(id.toString())
+        val i = sqlObj.delete(tableName, "id=?", selectionArguments)
         if (i > 0) return "ok" else return "error"
 
     }

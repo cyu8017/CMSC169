@@ -22,17 +22,18 @@ class ContactManager : AppCompatActivity() {
             save_btn.text = "Add Contact"
         }
 
+        // When user makes modifications to an existing contact, save the updated information to contacts.
         else {
             save_btn.text = "Update Contact"
-            var _fname = intent.getStringExtra("fname")
-            var _lname = intent.getStringExtra("lname")
-            var _email = intent.getStringExtra("email")
-            var _phone = intent.getStringExtra("phone")
+            var fname = intent.getStringExtra("fname")
+            var lname = intent.getStringExtra("lname")
+            var email = intent.getStringExtra("email")
+            var phone = intent.getStringExtra("phone")
 
-            fnametxt.setText(_fname)
-            lnametxt.setText(_lname)
-            emailtxt.setText(_email)
-            phone_txt.setText(_phone)
+            fnametxt.setText(fname)
+            lnametxt.setText(lname)
+            emailtxt.setText(email)
+            phone_txt.setText(phone)
         }
 
         // Save Button
@@ -46,7 +47,7 @@ class ContactManager : AppCompatActivity() {
             var d = phone_txt.text.toString()
 
 
-            // If first name text field is empty display Toast Message
+            // EditText Validation
             if (isEmpty(a)) {
                 Toast.makeText(this, "Enter A First Name", Toast.LENGTH_SHORT).show()
             }
@@ -72,8 +73,8 @@ class ContactManager : AppCompatActivity() {
 
                 // Adding contact
                 if (recordID == 0) {
-                    var DB = DatabaseHandler(this)
-                    var response = DB.addContact(values)
+                    var database = DatabaseHandler(this)
+                    var response = database.addContact(values)
 
                     if (response == "ok") {
                         Toast.makeText(this, "Contact Added", Toast.LENGTH_SHORT).show()
@@ -88,8 +89,8 @@ class ContactManager : AppCompatActivity() {
                 }
 
                 else {
-                    var DB = DatabaseHandler(this)
-                    var res: String = DB.updateContact(values, recordID)
+                    var database = DatabaseHandler(this)
+                    var res: String = database.updateContact(values, recordID)
 
                     if (res == "ok") {
                         Toast.makeText(this, "Contact Updated", Toast.LENGTH_SHORT).show()
