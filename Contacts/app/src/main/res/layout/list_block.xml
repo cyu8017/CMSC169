@@ -6,7 +6,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:padding="10dp"
-        android:id="@+id/list_block">
+        android:id="@+id/list_block" android:background="@android:color/background_light">
 
     <ImageView
             android:src="@drawable/ic_person_black_24dp"

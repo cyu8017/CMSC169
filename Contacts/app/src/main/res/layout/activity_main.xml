@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".MainActivity" android:padding="2dp">
+              tools:context=".MainActivity" android:padding="2dp" android:background="@android:color/background_light">
 
     <Button
             android:id="@+id/add_contact_btn"
@@ -25,7 +25,7 @@
             android:id="@+id/contact_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:dividerHeight="1px">
+            android:dividerHeight="1px" android:layout_marginTop="9dp">
 
     </ListView>
 

@@ -77,7 +77,7 @@ class DatabaseHandler : SQLiteOpenHelper {
             } while (cur.moveToNext())
         }
 
-            //var count: Int = arrayList.size
+        //var count: Int = arrayList.size
 
         return arrayList
     }
