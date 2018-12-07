@@ -14,8 +14,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:contentDescription="@string/todo"/>
+            android:contentDescription="@string/todo"
+            android:textAllCaps="false"/>
 
+    <!-- This TextView holds Contacts saved to the app -->
     <TextView
             android:id="@+id/contact_name"
             android:layout_width="match_parent"

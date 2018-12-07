@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var contactList = ArrayList<ContactData>()
+    private var contactList = ArrayList<ContactData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,27 +19,28 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        var database = DatabaseHandler(this)
+        val database = DatabaseHandler(this)
         contactList = database.fetchContacts("%")
 
         if(contactList.size > 0) {
 
-            var contactAdapterObj = ContactAdapter(this, contactList)
+            val contactAdapterObj = ContactAdapter(this, contactList)
             
             contact_list.adapter = contactAdapterObj
 
+            // Contact list listener
             contact_list.onItemClickListener = AdapterView.OnItemClickListener {
                     _ , _ , position, _ ->
 
                 // ContactList holds ContactData object
-                var fname = contactList[position].firstName
-                var lname = contactList[position].lastName
-                var email = contactList[position].email
-                var phone = contactList[position].phoneNumber
-                var id = contactList[position].conID
+                val fname = contactList[position].firstName
+                val lname = contactList[position].lastName
+                val email = contactList[position].email
+                val phone = contactList[position].phoneNumber
+                val id = contactList[position].conID
 
                 // Passing data to ContactManager activity.
-                var intent = Intent(this, ContactManager:: class.java)
+                val intent = Intent(this, ContactManager:: class.java)
                 intent.putExtra("id", id)
                 intent.putExtra("fname", fname)
                 intent.putExtra("lname", lname)
@@ -48,14 +49,14 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("action", "edit")
                 startActivity(intent)
             }
-        }
+        } // End Contact Listener
 
         else {
             Toast.makeText(this, "No Contact Found", Toast.LENGTH_SHORT).show()
         }
 
         add_contact_btn.setOnClickListener {
-            var intent = Intent(this, ContactManager:: class.java)
+            val intent = Intent(this, ContactManager:: class.java)
             startActivity(intent)
         }
     }

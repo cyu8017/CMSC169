@@ -12,10 +12,8 @@ class DatabaseHandler : SQLiteOpenHelper {
     // Define constant objects
     companion object {
 
-        const val tag = "DatabaseHandler"
         const val dbName = "ContactDB"
         const val dbVersion = 1
-
         const val tableName = "phoneTable"
         const val conID = "id"
         const val firstName = "fname"
@@ -24,7 +22,7 @@ class DatabaseHandler : SQLiteOpenHelper {
         const val email = "email"
     }
 
-    var context: Context? = null
+    private var context: Context? = null
     private var sqlObj: SQLiteDatabase
 
     constructor(context: Context) : super(context, dbName, null, dbVersion) {
@@ -32,20 +30,24 @@ class DatabaseHandler : SQLiteOpenHelper {
         sqlObj = this.writableDatabase
     }
 
+    // Create the contact
     override fun onCreate(p0: SQLiteDatabase?) {
         // SQL for creating table
-        var sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " + "(" + conID + " INTEGER PRIMARY KEY," +
+        val sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " + "(" + conID + " INTEGER PRIMARY KEY," +
                 firstName + " TEXT, " + lastName + " TEXT, " + email + " TEXT," + phoneNumber + " TEXT );"
 
         p0!!.execSQL(sql1)
     }
 
+    // Update the information on a existing contact
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         //p0!!.execSQL("DROP table IF EXISTS" + tableName)
-        p0!!.execSQL("$tableName")
+        //p0!!.execSQL("$tableName")
+        p0!!.execSQL("")
         onCreate(p0)
     }
 
+    // Function Add Contact
     fun addContact(values: ContentValues): String {
         var message = "error"
         val id = sqlObj.insert(tableName, "", values)
@@ -55,10 +57,11 @@ class DatabaseHandler : SQLiteOpenHelper {
         }
 
         return message
-    }
+    } // End Add Contact
 
+    // Function Fetch Contact
     fun fetchContacts(keyword: String): ArrayList<ContactData> {
-        var arrayList = ArrayList<ContactData>()
+        val arrayList = ArrayList<ContactData>()
 
         val sqb = SQLiteQueryBuilder()
         sqb.tables = tableName
@@ -77,22 +80,28 @@ class DatabaseHandler : SQLiteOpenHelper {
             } while (cur.moveToNext())
         }
 
-        //var count: Int = arrayList.size
-
         return arrayList
-    }
+    } // End Fetch Contact
 
+    // Function Update Contact
     fun updateContact(values: ContentValues, id: Int): String {
 
-        var selectionArguments = arrayOf(id.toString())
+        val selectionArguments = arrayOf(id.toString())
         val i = sqlObj.update(tableName, values, "id=?", selectionArguments)
-        if (i > 0) return "ok" else return "error"
-    }
 
+        if (i > 0) return "ok" else return "error"
+    } // End Update Contact
+
+    // Function Remove Contact
     fun removeContact(id: Int): String {
-        var selectionArguments = arrayOf(id.toString())
+        val selectionArguments = arrayOf(id.toString())
         val i = sqlObj.delete(tableName, "id=?", selectionArguments)
-        if (i > 0) return "ok" else return "error"
 
-    }
+        if (i > 0)
+            return "ok"
+
+        else
+            return "error"
+
+    } // End Remove Contact
 }

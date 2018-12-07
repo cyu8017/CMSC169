@@ -3,9 +3,6 @@
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#008080" />
-            <!-- Unused style -->
-            <!--<stroke android:color="#000000" android:width="2dp" />-->
-
             <!-- Give the button a rounded corner-->
             <corners android:radius="25dp" />
         </shape>

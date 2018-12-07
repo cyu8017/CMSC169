@@ -40,36 +40,36 @@ class ContactManager : AppCompatActivity() {
         save_btn.setOnClickListener {
 
             // Capitalize the first letter of first name and first letter of last name.
-            var a = fnametxt.text.toString().capitalize()
-            var b = lnametxt.text.toString().capitalize()
+            var firstName = fnametxt.text.toString().capitalize()
+            var lastName = lnametxt.text.toString().capitalize()
 
-            var c = emailtxt.text.toString()
-            var d = phone_txt.text.toString()
+            var emailAddress = emailtxt.text.toString()
+            var phoneNumber = phone_txt.text.toString()
 
 
             // EditText Validation
-            if (isEmpty(a)) {
+            if (isEmpty(firstName)) {
                 Toast.makeText(this, "Enter A First Name", Toast.LENGTH_SHORT).show()
             }
 
-            else if (isEmpty(b)) {
+            else if (isEmpty(lastName)) {
                 Toast.makeText(this, "Enter A Last Name", Toast.LENGTH_SHORT).show()
             }
 
-            else if (isEmpty(c)) {
+            else if (isEmpty(emailAddress)) {
                 Toast.makeText(this, "Enter a valid Email Address", Toast.LENGTH_SHORT).show()
             }
 
-            else if (isEmpty(d)) {
+            else if (isEmpty(phoneNumber)) {
                 Toast.makeText(this, "Enter Phone Number", Toast.LENGTH_SHORT).show()
             }
 
             else {
                 var values = ContentValues()
-                values.put("fname", a)
-                values.put("lname", b)
-                values.put("email", c)
-                values.put("number", d)
+                values.put("fname", firstName)
+                values.put("lname", lastName)
+                values.put("email", emailAddress)
+                values.put("number", phoneNumber)
 
                 // Adding contact
                 if (recordID == 0) {

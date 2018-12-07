@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Contacts</string>
+    <string name="app_name">Contacts Book</string>
 
     <!-- Hints -->
     <string name="todo">TODO</string>
@@ -7,9 +7,11 @@
     <string name="last_name">Last Name</string>
     <string name="email">Email</string>
     <string name="phone_number">Phone Number</string>
+    <string name="contacts_image">Contacts Image</string>
 
     <!-- Buttons -->
-    <string name="add_new_contact"> + Add New Contact</string>
-    <string name="delete_contact">Delete Contact</string>
+    <string name="add_new_contact"> + Add A New Contact</string>
+    <string name="delete_contact">Delete This Contact</string>
     <string name="add_contact">Add Contact</string>
+    <string name="update_contact">Update This Contact</string>
 </resources>

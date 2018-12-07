@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.list_block.view.*
 
-class ContactAdapter(con:Context, arrList:ArrayList<ContactData>): BaseAdapter() {
+class ContactAdapter(context:Context, arrList:ArrayList<ContactData>): BaseAdapter() {
 
     var arrayList = ArrayList<ContactData>()
     var context: Context? = null
     var myInflater: LayoutInflater? = null
 
     init {
-        this.context = con
+        this.context = context
         this.myInflater = LayoutInflater.from(context)
         this.arrayList = arrList
     }

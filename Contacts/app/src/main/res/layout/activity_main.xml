@@ -9,6 +9,7 @@
               android:background="@android:color/background_light">
 
     <!-- Add a contact button-->
+    <!-- Make button letters capitalized instead of all caps-->
     <Button
             android:id="@+id/add_contact_btn"
             android:layout_width="wrap_content"
@@ -21,6 +22,7 @@
             android:textStyle="bold"
             android:background="@drawable/button_bg_rounded_corners"
             android:fontFamily="sans-serif"
+            android:textAllCaps="false"
             android:textColor="@android:color/background_light"
             android:layout_marginTop="5dp"/>
 
@@ -31,8 +33,6 @@
             android:layout_height="match_parent"
             android:dividerHeight="1px"
             android:layout_marginTop="9dp">
-
     </ListView>
-
 
 </LinearLayout>
