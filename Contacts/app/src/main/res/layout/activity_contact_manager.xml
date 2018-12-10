@@ -10,34 +10,26 @@
               android:background="@android:color/background_light">
 
     <!-- First Name EditText -->
-    <EditText android:id="@+id/fnametxt"
+    <EditText android:id="@+id/fname_txt"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:hint="@string/first_name"
               android:inputType="textPersonName"
               android:text=""
+              android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
               android:autofillHints=""/>
 
     <!-- Last Name EditText -->
-    <EditText android:id="@+id/lnametxt"
+    <EditText android:id="@+id/lname_txt"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:hint="@string/last_name"
               android:inputType="textPersonName"
               android:text=""
+              android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
               android:autofillHints=""/>
 
-    <!-- Email EditText-->
-    <EditText android:id="@+id/emailtxt"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:hint="@string/email"
-              android:inputType="textEmailAddress"
-
-              android:text=""
-              android:autofillHints=""/>
-
-    <!-- Phone EditText-->
+    <!-- Phone EditText -->
     <EditText android:id="@+id/phone_txt"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -47,20 +39,31 @@
               android:text=""
               android:autofillHints=""/>
 
+    <!-- Email EditText -->
+    <EditText android:id="@+id/email_txt"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/email"
+              android:inputType="textEmailAddress"
+              android:text=""
+              android:autofillHints=""/>
+
     <!-- Linear Layout to Hold Save Button and Delete Button -->
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:hint="@string/phone_number"
                   android:gravity="center"
-                  android:orientation="horizontal" android:layout_marginTop="25dp">
+                  android:orientation="horizontal"
+                  android:layout_marginTop="25dp">
 
         <!-- Save Contact Button -->
         <Button android:id="@+id/save_btn"
-                android:layout_width="163dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/add_contact"
                 android:textAllCaps="false"
                 android:textSize="16sp"
+                android:drawableStart="@android:drawable/ic_menu_save"
                 android:contentDescription="@string/add_contact"
                 android:background="#008080"
                 android:textColor="#FFFFFF"
@@ -69,11 +72,12 @@
 
         <!-- Delete Contact Button -->
         <Button android:id="@+id/delete_btn"
-                android:layout_width="163dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:textAllCaps="false"
                 android:text="@string/delete_contact"
                 android:textSize="16sp"
+                android:drawableStart="@android:drawable/ic_menu_delete"
                 android:background="#990000"
                 android:textColor="@android:color/background_light"
                 android:padding="10sp"

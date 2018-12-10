@@ -3,6 +3,8 @@ package com.example.cyu.contacts
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,6 +18,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu to use the action bar
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle presses on the action bar menu items
+        when (item.itemId) {
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -23,9 +39,7 @@ class MainActivity : AppCompatActivity() {
         contactList = database.fetchContacts("%")
 
         if(contactList.size > 0) {
-
             val contactAdapterObj = ContactAdapter(this, contactList)
-            
             contact_list.adapter = contactAdapterObj
 
             // Contact list listener
@@ -35,8 +49,8 @@ class MainActivity : AppCompatActivity() {
                 // ContactList holds ContactData object
                 val fname = contactList[position].firstName
                 val lname = contactList[position].lastName
-                val email = contactList[position].email
                 val phone = contactList[position].phoneNumber
+                val email = contactList[position].email
                 val id = contactList[position].conID
 
                 // Passing data to ContactManager activity.
@@ -44,17 +58,19 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("id", id)
                 intent.putExtra("fname", fname)
                 intent.putExtra("lname", lname)
-                intent.putExtra("email", email)
                 intent.putExtra("phone", phone)
+                intent.putExtra("email", email)
                 intent.putExtra("action", "edit")
                 startActivity(intent)
             }
         } // End Contact Listener
 
         else {
-            Toast.makeText(this, "No Contact Found", Toast.LENGTH_SHORT).show()
+            // This toast message will show when no contacts are stored on the app.
+            Toast.makeText(this, "No Contacts Found", Toast.LENGTH_SHORT).show()
         }
 
+        // Button add a contact
         add_contact_btn.setOnClickListener {
             val intent = Intent(this, ContactManager:: class.java)
             startActivity(intent)

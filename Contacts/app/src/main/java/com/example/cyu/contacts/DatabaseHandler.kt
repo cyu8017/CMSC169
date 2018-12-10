@@ -9,7 +9,7 @@ import java.util.ArrayList
 
 class DatabaseHandler : SQLiteOpenHelper {
 
-    // Define constant objects
+    // Define constant companion objects
     companion object {
 
         const val dbName = "ContactDB"
@@ -41,8 +41,6 @@ class DatabaseHandler : SQLiteOpenHelper {
 
     // Update the information on a existing contact
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        //p0!!.execSQL("DROP table IF EXISTS" + tableName)
-        //p0!!.execSQL("$tableName")
         p0!!.execSQL("")
         onCreate(p0)
     }
@@ -89,7 +87,11 @@ class DatabaseHandler : SQLiteOpenHelper {
         val selectionArguments = arrayOf(id.toString())
         val i = sqlObj.update(tableName, values, "id=?", selectionArguments)
 
-        if (i > 0) return "ok" else return "error"
+        if (i > 0)
+            return "ok"
+
+        else
+            return "error"
     } // End Update Contact
 
     // Function Remove Contact

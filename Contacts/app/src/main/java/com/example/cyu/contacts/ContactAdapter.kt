@@ -9,9 +9,9 @@ import kotlinx.android.synthetic.main.list_block.view.*
 
 class ContactAdapter(context:Context, arrList:ArrayList<ContactData>): BaseAdapter() {
 
-    var arrayList = ArrayList<ContactData>()
-    var context: Context? = null
-    var myInflater: LayoutInflater? = null
+    private var arrayList = ArrayList<ContactData>()
+    private var context: Context? = null
+    private var myInflater: LayoutInflater? = null
 
     init {
         this.context = context
@@ -21,10 +21,10 @@ class ContactAdapter(context:Context, arrList:ArrayList<ContactData>): BaseAdapt
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 
-        var myView = myInflater!!.inflate(R.layout.list_block,null)
-        var conObj = arrayList[p0]
+        val myView = myInflater!!.inflate(R.layout.list_block, null as ViewGroup?)
+        val conObj = arrayList[p0]
 
-        var fullName : String = conObj.firstName.toString() + " " + conObj.lastName.toString()
+        val fullName : String = conObj.firstName.toString() + " " + conObj.lastName.toString()
         myView.contact_name.text = fullName
 
         return myView
