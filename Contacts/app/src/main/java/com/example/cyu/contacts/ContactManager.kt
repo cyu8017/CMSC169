@@ -5,10 +5,9 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_contact_manager.*
+
 class ContactManager : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,21 +19,26 @@ class ContactManager : AppCompatActivity() {
         val recordID = intent.getIntExtra("id", 0)
 
         if (recordID == 0) {
-            save_btn.text = "Add Contact"
+            // Text: Add Contact
+            save_btn.text = getString(R.string.Save_Button_Text)
         }
 
         // When user makes modifications to an existing contact, save the updated information to contacts.
         else {
-            save_btn.text = "Update Contact"
+            // Text: Update Contact
+            save_btn.text = getString(R.string.Save_Button_Update_Text)
+
             val fname = intent.getStringExtra("fname")
             val lname = intent.getStringExtra("lname")
             val email = intent.getStringExtra("email")
             val phone = intent.getStringExtra("phone")
+            val organization = intent.getStringExtra("organization")
 
             fname_txt.setText(fname)
             lname_txt.setText(lname)
             email_txt.setText(email)
             phone_txt.setText(phone)
+            organization_txt.setText(organization)
         }
 
         // Save Button
@@ -45,6 +49,7 @@ class ContactManager : AppCompatActivity() {
             val lastName = lname_txt.text.toString().capitalize()
             val emailAddress = email_txt.text.toString()
             val phoneNumber = phone_txt.text.toString()
+            val organization = organization_txt.text.toString().capitalize()
 
             // First name EditText validation check
             if (isEmpty(firstName)) {
@@ -74,6 +79,7 @@ class ContactManager : AppCompatActivity() {
                 values.put("lname", lastName)
                 values.put("email", emailAddress)
                 values.put("number", phoneNumber)
+                values.put("organization", organization)
 
                 // Adding contact
                 if (recordID == 0) {
@@ -94,6 +100,7 @@ class ContactManager : AppCompatActivity() {
                     }
                 }
 
+                // Updating a existing contact
                 else {
                     val database = DatabaseHandler(this)
                     val res: String = database.updateContact(values, recordID)
@@ -134,20 +141,5 @@ class ContactManager : AppCompatActivity() {
             startActivity(intent)
             finish()
         } // End Delete Button
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu to use the action bar
-        val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem):Boolean {
-        // Handled presses on the action bar menu items
-        when (item.itemId) {
-
-        }
-        return super.onOptionsItemSelected(item)
-    }
-}
+    } // End onCreate
+} // End ContactManager

@@ -1,17 +1,11 @@
 package com.example.cyu.contacts
 
-class ContactData {
-    var conID: Int? = null
-    var firstName: String? = null
-    var lastName: String? = null
-    var email: String? = null
-    var phoneNumber: String? = null
-
-    constructor(id:Int, fname: String, lname: String, email: String, phone: String) {
-        this.conID = id
-        this.firstName = fname
-        this.lastName = lname
-        this.email = email
-        this.phoneNumber = phone
-    }
-}
+// Convert to primary constructor
+class ContactData (id: Int, fname: String, lname: String, email: String, phone: String, organization: String) {
+    var conID: Int? = id
+    var firstName: String? = fname
+    var lastName: String? = lname
+    var email: String? = email
+    var phoneNumber: String? = phone
+    var organization: String? = organization
+} // End ContactData

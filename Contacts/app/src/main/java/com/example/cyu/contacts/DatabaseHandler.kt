@@ -7,11 +7,10 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteQueryBuilder
 import java.util.ArrayList
 
-class DatabaseHandler : SQLiteOpenHelper {
+class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, dbName, null, dbVersion) {
 
     // Define constant companion objects
     companion object {
-
         const val dbName = "ContactDB"
         const val dbVersion = 1
         const val tableName = "phoneTable"
@@ -20,21 +19,21 @@ class DatabaseHandler : SQLiteOpenHelper {
         const val lastName = "lname"
         const val phoneNumber = "number"
         const val email = "email"
+        const val organization = "organization"
     }
 
-    private var context: Context? = null
-    private var sqlObj: SQLiteDatabase
-
-    constructor(context: Context) : super(context, dbName, null, dbVersion) {
-        this.context = context
-        sqlObj = this.writableDatabase
-    }
+    private var sqlObj: SQLiteDatabase = this.writableDatabase
 
     // Create the contact
     override fun onCreate(p0: SQLiteDatabase?) {
         // SQL for creating table
-        val sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " + "(" + conID + " INTEGER PRIMARY KEY," +
-                firstName + " TEXT, " + lastName + " TEXT, " + email + " TEXT," + phoneNumber + " TEXT );"
+        val sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " + "" + "(" +
+                conID + " INTEGER PRIMARY KEY, " +
+                firstName + " TEXT, "+
+                lastName + " TEXT, " +
+                email + " TEXT," +
+                phoneNumber + " TEXT," +
+                organization + " TEXT);"
 
         p0!!.execSQL(sql1)
     }
@@ -63,7 +62,9 @@ class DatabaseHandler : SQLiteOpenHelper {
 
         val sqb = SQLiteQueryBuilder()
         sqb.tables = tableName
-        val cols = arrayOf("id", "fname", "lname", "email", "number")
+
+        // Declare columns and rows
+        val cols = arrayOf("id", "fname", "lname", "email", "number", "organization")
         val rowSelArg = arrayOf(keyword)
         val cur = sqb.query(sqlObj, cols, "fname like ?", rowSelArg, null, null, "fname")
 
@@ -74,7 +75,8 @@ class DatabaseHandler : SQLiteOpenHelper {
                 val lname = cur.getString(cur.getColumnIndex("lname"))
                 val email = cur.getString(cur.getColumnIndex("email"))
                 val number = cur.getString(cur.getColumnIndex("number"))
-                arrayList.add(ContactData(id, fname, lname, email, number))
+                val organization = cur.getString(cur.getColumnIndex("organization"))
+                arrayList.add(ContactData(id, fname, lname, email, number, organization))
             } while (cur.moveToNext())
         }
 
@@ -87,11 +89,7 @@ class DatabaseHandler : SQLiteOpenHelper {
         val selectionArguments = arrayOf(id.toString())
         val i = sqlObj.update(tableName, values, "id=?", selectionArguments)
 
-        if (i > 0)
-            return "ok"
-
-        else
-            return "error"
+        return if (i > 0) "ok" else "error"
     } // End Update Contact
 
     // Function Remove Contact
@@ -99,11 +97,7 @@ class DatabaseHandler : SQLiteOpenHelper {
         val selectionArguments = arrayOf(id.toString())
         val i = sqlObj.delete(tableName, "id=?", selectionArguments)
 
-        if (i > 0)
-            return "ok"
-
-        else
-            return "error"
+        return if (i > 0) "ok" else "error"
 
     } // End Remove Contact
-}
+} // End DatabaseHandler

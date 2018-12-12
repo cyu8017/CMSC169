@@ -3,8 +3,6 @@ package com.example.cyu.contacts
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,20 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu to use the action bar
-        val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle presses on the action bar menu items
-        when (item.itemId) {
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
+    // When app is opened resume by displaying contacts already saved to SQLite.
     override fun onResume() {
         super.onResume()
 
@@ -51,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 val lname = contactList[position].lastName
                 val phone = contactList[position].phoneNumber
                 val email = contactList[position].email
+                val organization = contactList[position].organization
                 val id = contactList[position].conID
 
                 // Passing data to ContactManager activity.
@@ -60,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("lname", lname)
                 intent.putExtra("phone", phone)
                 intent.putExtra("email", email)
+                intent.putExtra("organization", organization)
                 intent.putExtra("action", "edit")
                 startActivity(intent)
             }
